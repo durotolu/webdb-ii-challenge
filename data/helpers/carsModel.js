@@ -4,6 +4,8 @@ module.exports = {
     find,
     findById,
     insert,
+    update,
+    remove
 }
 
 function find() {
@@ -16,4 +18,12 @@ function findById(id) {
 
 function insert(car) {
     return db('cars').insert(car, 'id');
+}
+
+function update(car, id) {
+    return db('cars').where({ id }).update(car);
+}
+
+function remove(id) {
+    return db('cars').where({ id }).del()
 }

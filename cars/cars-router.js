@@ -35,8 +35,27 @@ router.post('/', (req, res) => {
             res.status(201).json({ created: id});
         })
         .catch(err => {
-            res.status(500).json({'Failed to insert new car': err.message });
+            res.status(500).json({'Failed to insert new car info': err.message });
         })
+})
+
+router.put('/:id', (req, res) => {
+    Cars.update(req.body, req.params.id)
+        .then(id => {
+            res.status(201).json({ updated: id});
+        })
+        .catch(err => {
+            res.status(500).json({'Failed to update car info': err.message });
+        })
+})
+
+router.delete('/:id', async(req, res) => {
+    try {
+        const result = await Cars.remove(req.params.id)
+        return res.status(201).json({ deleted: result});
+    } catch(error) {
+        res.status(500).json({'Failed to delete car info': err.message });
+    }
 })
 
 module.exports = router;
