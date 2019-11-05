@@ -7,8 +7,8 @@ exports.up = function(knex) {
       tbl.text('make').notNullable();
       tbl.text('model').notNullable();
       tbl.decimal('mileage').notNullable();
-      tbl.text('transmission');
-      tbl.boolean('automatic');
+      tbl.text('automatic');
+      tbl.boolean('status');
   })
 };
 
